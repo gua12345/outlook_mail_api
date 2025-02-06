@@ -29,7 +29,7 @@ pip install -r requirements.txt
 ### 启动服务
 运行以下命令启动 Flask 服务：
 ```bash
-python script.py
+python app.py
 ```
 
 ### API 接口
