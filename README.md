@@ -1,4 +1,3 @@
-以下是一个简单的 README 文件示例，您可以根据需要进行调整：
 # Microsoft邮件处理脚本
 
 ## 简介
@@ -25,7 +24,7 @@ pip install -r requirements.txt
 ## 使用方法
 
 ### 配置
-在运行脚本之前，请确保设置了环境变量 `Api-Key`，用于 API 访问的身份验证。
+在运行脚本之前，请确保设置了环境变量 `Api-Key`，用于 API 访问的身份验证。您可以在代码中找到默认值（`114514`），但建议您更改为更安全的值。
 
 ### 启动服务
 运行以下命令启动 Flask 服务：
@@ -35,9 +34,13 @@ python script.py
 
 ### API 接口
 
+所有 API 接口都需要在请求头中包含 `Api-Key` 进行身份验证。
+
 #### 发送邮件
 - **URL**: `/send_email`
 - **方法**: `POST`
+- **请求头**:
+  - `Api-Key`: 您的 API 密钥
 - **请求体**:
   ```json
   {
@@ -53,6 +56,8 @@ python script.py
 #### 获取邮件
 - **URL**: `/get_messages`
 - **方法**: `GET`
+- **请求头**:
+  - `Api-Key`: 您的 API 密钥
 - **请求参数**:
   - `client_id`: 客户端ID
   - `refresh_token`: 刷新令牌
@@ -62,6 +67,8 @@ python script.py
 #### 获取符合条件的最新邮件
 - **URL**: `/get_mail`
 - **方法**: `GET`
+- **请求头**:
+  - `Api-Key`: 您的 API 密钥
 - **请求参数**:
   - `client_id`: 客户端ID
   - `refresh_token`: 刷新令牌
@@ -73,6 +80,8 @@ python script.py
 #### 从邮件中提取验证码或链接
 - **URL**: `/get_code_or_link`
 - **方法**: `GET`
+- **请求头**:
+  - `Api-Key`: 您的 API 密钥
 - **请求参数**:
   - `client_id`: 客户端ID
   - `refresh_token`: 刷新令牌
@@ -85,6 +94,8 @@ python script.py
 #### 删除收件箱中的所有邮件
 - **URL**: `/delete_all_inbox_emails`
 - **方法**: `DELETE`
+- **请求头**:
+  - `Api-Key`: 您的 API 密钥
 - **请求参数**:
   - `client_id`: 客户端ID
   - `refresh_token`: 刷新令牌
@@ -92,6 +103,8 @@ python script.py
 #### 删除垃圾邮件中的所有邮件
 - **URL**: `/delete_all_junkemail_emails`
 - **方法**: `DELETE`
+- **请求头**:
+  - `Api-Key`: 您的 API 密钥
 - **请求参数**:
   - `client_id`: 客户端ID
   - `refresh_token`: 刷新令牌
