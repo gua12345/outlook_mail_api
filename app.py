@@ -11,7 +11,7 @@ from loguru import logger
 from flask import Flask, request, jsonify
 
 # 自定义日志格式
-logger.add("logfile.log", rotation="5 MB", format="{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}")
+logger.add("logfile.log", rotation="10 MB", format="{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}")
 
 # 读取API_KEY
 API_KEY = os.getenv('Api-Key','114514')
@@ -334,6 +334,23 @@ def api_delete_all_inbox_emails():
 
     try:
         delete_all_inbox_emails(client_id, refresh_token)
+        return jsonify({"success": True}), 200
+    except Exception as e:
+        logger.error(f"删除收件箱邮件失败: {e}")
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/delete_all_junkemail_emails', methods=['DELETE'])
+def api_delete_all_junkemail_emails():
+    """删除收件箱中的所有邮件接口"""
+    api_key = request.headers.get('Api-Key')
+    if api_key != API_KEY:
+        return jsonify({"error": "Unauthorized"}), 401
+
+    client_id = request.args.get('client_id')
+    refresh_token = request.args.get('refresh_token')
+
+    try:
+        delete_all_junk_emails(client_id, refresh_token)
         return jsonify({"success": True}), 200
     except Exception as e:
         logger.error(f"删除收件箱邮件失败: {e}")
