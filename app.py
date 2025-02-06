@@ -356,5 +356,10 @@ def api_delete_all_junkemail_emails():
         logger.error(f"删除收件箱邮件失败: {e}")
         return jsonify({"error": str(e)}), 500
 
+@app.route('/', methods=['GET'])
+def health_check():
+    """健康度检测接口"""
+    return jsonify({"status": "healthy"}), 200
+
 if __name__ == '__main__':
     app.run(debug=True)
