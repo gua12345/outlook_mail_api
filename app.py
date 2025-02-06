@@ -15,7 +15,7 @@ logger.add("logfile.log", rotation="10 MB", format="{time:YYYY-MM-DD at HH:mm:ss
 
 # 读取API_KEY
 API_KEY = os.getenv('Api-Key','114514')
-
+logger.info(f"API-KEY={API-KEY}")
 GRAPH_API_ENDPOINT = 'https://graph.microsoft.com/v1.0'
 TOKEN_URL = 'https://login.microsoftonline.com/common/oauth2/v2.0/token'
 
